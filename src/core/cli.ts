@@ -27,13 +27,15 @@ export async function cli(
     let output = "";
 
     childProcess.stdout?.on("data", (data: Buffer) => {
-      stdout += data.toString();
-      output += data.toString();
+      const str = String(data);
+      stdout += str;
+      output += str;
     });
 
     childProcess.stderr?.on("data", (data: Buffer) => {
-      stderr += data.toString();
-      output += data.toString();
+      const str = String(data);
+      stderr += str;
+      output += str;
     });
 
     childProcess.on("close", (code) => {
