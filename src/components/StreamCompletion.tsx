@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import * as React from "react";
 
+import clipboard from "clipboardy";
 import * as Ink from "ink";
 import OpenAI from "openai";
 
@@ -48,6 +49,8 @@ export function StreamCompletion() {
   const chunk_list = Store.useState((state) => state.chunk_list);
   const done = Store.useState((state) => state.done);
   const command = chunk_list.join("");
+  const [copied, set_copied] = React.useState(false);
+  const [output, set_output] = React.useState("");
 
   return (
     <Ink.Box flexDirection="column">
@@ -55,16 +58,38 @@ export function StreamCompletion() {
       {!done ? null : (
         <YesNoPrompt message="   Run?" onNo={onNo} onYes={onYes} />
       )}
+
+      {!output ? null : (
+        <React.Fragment>
+          <Ink.Box height={1} />
+          <Ink.Text>{output}</Ink.Text>
+        </React.Fragment>
+      )}
+
+      {!copied ? null : (
+        <React.Fragment>
+          <Ink.Box height={1} />
+          <Ink.Text dimColor>Command copied to clipboard.</Ink.Text>
+        </React.Fragment>
+      )}
     </Ink.Box>
   );
 
   function onNo() {
+    handle_clipboard();
     actions.exit(0, false);
   }
 
   async function onYes() {
-    await cli(command, { stdio: "inherit" });
+    const result = await cli(command);
+    set_output(result.output);
+    handle_clipboard();
     actions.exit(0, false);
+  }
+
+  function handle_clipboard() {
+    clipboard.writeSync(command);
+    set_copied(true);
   }
 }
 

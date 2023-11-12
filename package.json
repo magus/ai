@@ -1,6 +1,6 @@
 {
   "name": "hakase",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "author": "magus",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "test": "npm run prettier && npm run lint && npm run build"
   },
   "dependencies": {
+    "clipboardy": "^4.0.0",
     "immer": "^10.0.3",
     "ink": "^4.4.1",
     "openai": "^4.17.4",
