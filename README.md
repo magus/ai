@@ -5,7 +5,7 @@
 ## install
 
 ```bash
-npm i -g ai
+npm i -g hakase
 
 hakase show me the files changes in last commit
 ai show me the files changes in last commit
@@ -20,3 +20,10 @@ npm link
 hakase show me the files changes in last commit
 ai show me the files changes in last commit
 ```
+
+## uninstall
+
+```sh
+npm r -g hakase
+```
+
