@@ -1,6 +1,6 @@
 # ✨ hakase
 
-> generate commands from natural language
+> use natural language to generate commands
 
 ## install
 
