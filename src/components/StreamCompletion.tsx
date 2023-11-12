@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import * as React from "react";
 
+import path from "node:path";
+
 import clipboard from "clipboardy";
 import * as Ink from "ink";
 import OpenAI from "openai";
@@ -51,6 +53,24 @@ export function StreamCompletion() {
   const command = chunk_list.join("");
   const [copied, set_copied] = React.useState(false);
   const [output, set_output] = React.useState("");
+
+  if (!argv) {
+    return null;
+  }
+
+  if (!description) {
+    return (
+      <Ink.Box flexDirection="column">
+        <Ink.Text color="#ef4444">
+          Provide a description of the command you want to run.
+        </Ink.Text>
+        <Ink.Box height={1} />
+        <Ink.Box marginLeft={2}>
+          <Ink.Text bold>{path.basename(argv.$0)} say hello</Ink.Text>
+        </Ink.Box>
+      </Ink.Box>
+    );
+  }
 
   return (
     <Ink.Box flexDirection="column">
