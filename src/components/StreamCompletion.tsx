@@ -65,7 +65,10 @@ export function StreamCompletion() {
           Provide a description of the command you want to run.
         </Ink.Text>
         <Ink.Box height={1} />
-        <Ink.Box marginLeft={2}>
+        <Ink.Box>
+          <Ink.Text dimColor>Example</Ink.Text>
+        </Ink.Box>
+        <Ink.Box>
           <Ink.Text bold>{path.basename(argv.$0)} say hello</Ink.Text>
         </Ink.Box>
       </Ink.Box>
