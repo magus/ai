@@ -26,4 +26,3 @@ ai show me the files changes in last commit
 ```sh
 npm r -g hakase
 ```
-
