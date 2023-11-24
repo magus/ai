@@ -8,6 +8,7 @@ export async function command() {
     .command("[description..]", "convert description into command")
     .option("debug", {
       type: "boolean",
+      alias: ["verbose", "v", "d"],
       description: "Enable debug mode",
     })
 
